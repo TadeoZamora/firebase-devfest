@@ -1,5 +1,7 @@
 import React,{ useState } from 'react';
+import InputForm from '../components/forms/Input';
 import FirebaseHook from '../hooks/FirebaseHook';
+import FormHook from '../hooks/FormHook';
 
 const Registro = () => {
     const { signIn } = FirebaseHook()
@@ -7,18 +9,16 @@ const Registro = () => {
         email : '',
         password : ''
     })
-    const obtenerDatos = (evento) =>{
-        let valor = evento.target.value
-        let llave = evento.target.name
-        setUsuario({ ...usuario,[llave] : valor })
-    }
+    const { obtenerDatos } = FormHook(usuario,setUsuario)
+
     const registrarUsuario = ( ) =>{
-        signIn(usuario.email,usuario.password)
+        console.log(usuario)
+        // signIn(usuario.email,usuario.password)
     }
     return (
         <div>
-            <input type="text" name="email" placeholder="Correro electronico" onChange={obtenerDatos} />
-            <input type="password" name="password" placeholder="Contraseña" onChange={obtenerDatos} />
+            <InputForm type="text" name="email" placeholder="Correro electronico" onChange={obtenerDatos} />
+            <InputForm type="password" name="password" placeholder="Contraseña" onChange={obtenerDatos} />
             <button onClick={ registrarUsuario }>Registrar</button>
         </div>
     );
