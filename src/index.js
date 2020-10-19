@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Registro from './pages/Registro';
+import { BrowserRouter,Switch,Route } from 'react-router-dom';
+import LogIn from './pages/LogIn';
+import Dashboard from './pages/Dashboard';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <Route exact path='/' component={Registro} />
+      <Route path='/login' component={LogIn} />
+      <Route path='/dashboard' component={Dashboard} />
+    </Switch>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
